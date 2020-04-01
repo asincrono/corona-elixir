@@ -165,21 +165,6 @@ defmodule First do
   defp do_max([], max), do: max
   defp do_max([h | t], max), do: do_max(t, max(h, max))
 
-  def caesar(l, n) when is_list(l) and is_integer(n) do
-    do_caesar(l, n, [])
-    |> Enum.reverse()
-  end
-
-  defp do_caesar([], _n, message), do: message
-
-  defp do_caesar([h | t], n, message) do
-    IO.puts(h)
-    c = h + n
-    c = if c > 122, do: 97 + rem(c, 123), else: c
-
-    do_caesar(t, n, [c | message])
-  end
-
   def span(from, to) when from <= to do
     do_span(from, to, []) |> Enum.reverse()
   end
@@ -426,5 +411,27 @@ defmodule First do
       true ->
         {:error, string}
     end
+  end
+
+  def caesar(list, 0), do: list
+
+  def caesar(list, shift) do
+    len = length(list)
+
+    shift =
+      if shift > len do
+        len - rem(shift, len)
+      else
+        len - shift
+      end
+
+    {l_l, l_r} = Enum.split(list, shift)
+    l_r ++ l_l
+    # caesar(shift(list), shift - 1)
+  end
+
+  defp shift(list) when is_list(list) do
+    [h | t] = Enum.reverse(list)
+    Enum.reverse(t ++ [h])
   end
 end

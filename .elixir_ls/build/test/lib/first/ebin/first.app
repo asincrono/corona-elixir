@@ -1,6 +1,10 @@
 {application,first,
              [{applications,[kernel,stdlib,elixir,logger]},
               {description,"first"},
-              {modules,['Elixir.First']},
+              {modules,['Elixir.Caesar','Elixir.Caesar.BitString',
+                        'Elixir.Caesar.List','Elixir.Chop','Elixir.First',
+                        'Elixir.ListsAndRecursion','Elixir.Midi',
+                        'Elixir.Midi.Frame','Elixir.MyList','Elixir.Sum',
+                        'Elixir.Times']},
               {registered,[]},
               {vsn,"0.1.0"}]}.
